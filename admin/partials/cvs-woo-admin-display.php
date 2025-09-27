@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php require_once $plugin_icon; ?>
 						</div>
 					<div class="plugin-details">
-						<h2><?php esc_html_e( 'VerifyWoo', 'customer-verification-system-for-woocommerce' ); ?></h2>
+						<h2><?php esc_html_e( 'CheckMate', 'customer-verification-system-for-woocommerce' ); ?></h2>
 					</div>
 					<div class="plugin-version">
 						

@@ -103,15 +103,15 @@ class Cvs_Woo_Admin {
 	 * Adds the plugin's administration menu to the WordPress dashboard.
 	 *
 	 * This function uses `add_menu_page` to create a top-level menu item
-	 * for VerifyWoo settings.
+	 * for CheckMate settings.
 	 *
 	 * @since    1.0.0
 	 * @return   void
 	 */
 	public function add_admin_menu() {
 		add_menu_page(
-			'VerifyWoo Settings',
-			__( 'VerifyWoo', 'customer-verification-system-for-woocommerce' ),
+			'CheckMate Settings',
+			__( 'CheckMate', 'customer-verification-system-for-woocommerce' ),
 			'manage_options',
 			'verify_woo_settings_page',
 			array( $this, 'render_settings' ),
@@ -121,7 +121,7 @@ class Cvs_Woo_Admin {
 	}
 
 	/**
-	 * Renders the settings page for the VerifyWoo plugin in the admin area.
+	 * Renders the settings page for the CheckMate plugin in the admin area.
 	 *
 	 * This function retrieves available tabs, handles the current tab selection,
 	 * and includes the content file for the selected tab. It also generates

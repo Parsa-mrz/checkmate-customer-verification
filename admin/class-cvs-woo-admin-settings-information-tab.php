@@ -130,7 +130,7 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 		$options = get_option( self::OPTION_GROUP );
 
 		Cvs_Woo_Admin_Settings_Field_Factory::text(
-			__( 'VerifyWoo', 'customer-verification-system-for-woocommerce' ),
+			__( 'CheckMate', 'customer-verification-system-for-woocommerce' ),
 			sprintf(
 			/* translators: %s: plugin version */
 				esc_html__( 'Version %s', 'customer-verification-system-for-woocommerce' ),
