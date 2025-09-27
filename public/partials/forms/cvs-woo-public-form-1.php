@@ -7,8 +7,8 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/public/partials
+ * @package    cvs
+ * @subpackage cvs/public/partials
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

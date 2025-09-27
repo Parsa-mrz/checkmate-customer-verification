@@ -2,15 +2,15 @@
 /**
  * Admin Notice Handler for Verify-Woo Plugin
  *
- * This file contains the `Verify_Woo_Admin_Notice` class responsible for managing
+ * This file contains the `cvs_Admin_Notice` class responsible for managing
  * admin notices within the Verify-Woo plugin. It handles success and error messages
  * using WordPress transients, with optional auto-hide behavior.
  *
  * The notices are rendered within the plugin's custom admin interface and automatically
  * expire both in storage and visually (with JavaScript).
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin
+ * @package    cvs
+ * @subpackage cvs/admin
  * @author      Parsamirzaie
  * @link        https://parsamirzaie.com
  * @since       1.0.0
@@ -20,14 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Class Verify_Woo_Admin_Notice
+ * Class cvs_Admin_Notice
  *
  * Manages success and error notices within the Verify-Woo plugin's admin interface.
  * Notices are stored using WordPress transients and rendered in the plugin's settings tabs.
  *
  * Responsibilities:
  * - Add success or error notices from any plugin context.
- * - Store notices temporarily using a transient (`verify_woo_admin_notices`).
+ * - Store notices temporarily using a transient (`cvs_admin_notices`).
  * - Auto-expire notices after a defined time (`EXPIRE_TIME`).
  * - Output notices into the DOM with a `data-timeout` attribute for JavaScript auto-hide.
  *
@@ -41,7 +41,7 @@ class Cvs_Woo_Admin_Notice {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public const TRANSIENT_KEY = 'verify_woo_admin_notices';
+	public const TRANSIENT_KEY = 'cvs_admin_notices';
 
 	/**
 	 * Expiry time in seconds for stored notices.

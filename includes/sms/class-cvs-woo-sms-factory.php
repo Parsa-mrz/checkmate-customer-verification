@@ -10,15 +10,15 @@
  *
  * @link       https://parsamirzaie.com
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Verify_Woo_Sms_Factory Class.
+ * cvs_Sms_Factory Class.
  *
  * Implements `Sms_Factory_Interface` to provide a centralized way of
  * creating and retrieving SMS gateway driver instances within the plugin.
@@ -58,7 +58,7 @@ class Cvs_Woo_Sms_Factory implements Sms_Factory_Interface {
 	public function driver( string $driver_name ): Sms_Gateway_Interface {
 
 		if ( ! array_key_exists( $driver_name, $this->supported_drivers ) ) {
-			error_log( sprintf( 'Verify_Woo_Sms_Factory: SMS driver "%s" is not supported.', $driver_name ) );
+			error_log( sprintf( 'cvs_Sms_Factory: SMS driver "%s" is not supported.', $driver_name ) );
 			throw new \InvalidArgumentException(
 				sprintf(
 					// Translators: %s is driver name.
@@ -90,7 +90,7 @@ class Cvs_Woo_Sms_Factory implements Sms_Factory_Interface {
 		$driver_instance = new $driver_class();
 
 		if ( ! $driver_instance instanceof Sms_Gateway_Interface ) {
-			error_log( sprintf( 'Verify_Woo_Sms_Factory: Created driver "%s" does not implement Sms_Gateway_Interface.', $driver_class ) );
+			error_log( sprintf( 'cvs_Sms_Factory: Created driver "%s" does not implement Sms_Gateway_Interface.', $driver_class ) );
 			throw new \RuntimeException(
 				sprintf(
 					// Translators: %s is driver name.

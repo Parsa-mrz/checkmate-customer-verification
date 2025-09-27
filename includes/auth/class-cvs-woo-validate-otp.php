@@ -11,8 +11,8 @@
  *
  * @link       https://parsamirzaie.com
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * redirect URLs, user role assignment, and more.
  *
  * @since 1.0.0
- * @package Verify_Woo
+ * @package cvs
  */
 class Cvs_Woo_Validate_OTP {
 	/**
@@ -46,7 +46,7 @@ class Cvs_Woo_Validate_OTP {
 	 * @return void Outputs JSON and terminates script execution.
 	 */
 	public function wp_ajax_check_otp() {
-		check_ajax_referer( 'verify_woo_otp_nonce', '_nonce', true );
+		check_ajax_referer( 'cvs_otp_nonce', '_nonce', true );
 
 		$otp        = isset( $_POST['otp'] ) ? sanitize_text_field( wp_unslash( $_POST['otp'] ) ?? '' ) : '';
 		$user_phone = isset( $_POST['user_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['user_phone'] ) ?? '' ) : '';
@@ -55,7 +55,7 @@ class Cvs_Woo_Validate_OTP {
 			wp_send_json_error( __( 'Phone or OTP is missing.', 'checkmate-customer-verification-for-woocommerce' ) );
 		}
 
-		$check_otp = $this->verify_woo_check_otp( $user_phone, $otp );
+		$check_otp = $this->cvs_check_otp( $user_phone, $otp );
 		if ( ! $check_otp['success'] ) {
 			wp_send_json_error( $check_otp['message'] );
 		}
@@ -67,7 +67,7 @@ class Cvs_Woo_Validate_OTP {
 		}
 
 		/**
-		 * Filter: 'verify_woo_login_redirect_url'
+		 * Filter: 'cvs_login_redirect_url'
 		 *
 		 * Modify the URL where users are redirected after successful OTP login.
 		 *
@@ -77,7 +77,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @return string New redirect URL.
 		 */
-		$redirect_url = apply_filters( 'verify_woo_login_redirect_url', wc_get_page_permalink( 'myaccount' ) );
+		$redirect_url = apply_filters( 'cvs_login_redirect_url', wc_get_page_permalink( 'myaccount' ) );
 
 		wp_send_json_success(
 			array(
@@ -101,8 +101,8 @@ class Cvs_Woo_Validate_OTP {
 	 *     message?: string
 	 * }
 	 */
-	private function verify_woo_check_otp( $phone, $input_code ) {
-		$key  = 'verify_woo_otp_' . md5( $phone );
+	private function cvs_check_otp( $phone, $input_code ) {
+		$key  = 'cvs_otp_' . md5( $phone );
 		$data = get_transient( $key );
 
 		if ( ! $data ) {
@@ -113,7 +113,7 @@ class Cvs_Woo_Validate_OTP {
 		}
 
 		/**
-		 * Filter: 'verify_woo_max_otp_attempts'
+		 * Filter: 'cvs_max_otp_attempts'
 		 *
 		 * Set the maximum number of attempts allowed for OTP verification.
 		 *
@@ -123,7 +123,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @return int The new max attempt limit.
 		 */
-		$max_attempts = apply_filters( 'verify_woo_max_otp_attempts', OTP::MAX_ATTEMPTS->value );
+		$max_attempts = apply_filters( 'cvs_max_otp_attempts', OTP::MAX_ATTEMPTS->value );
 
 		if ( $data['attempts'] >= $max_attempts ) {
 			delete_transient( $key );
@@ -166,7 +166,7 @@ class Cvs_Woo_Validate_OTP {
 		$clean_phone = preg_replace( '/[^0-9]/', '', $phone );
 
 		/**
-		 * Filter: 'verify_woo_username_prefix'
+		 * Filter: 'cvs_username_prefix'
 		 *
 		 * Allows modifying the prefix used when creating a new username from a phone number.
 		 *
@@ -177,7 +177,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @return string Modified prefix.
 		 */
-		$prefix = apply_filters( 'verify_woo_username_prefix', 'customer_', $clean_phone );
+		$prefix = apply_filters( 'cvs_username_prefix', 'customer_', $clean_phone );
 
 		$username = sanitize_user( "$prefix$clean_phone", true );
 
@@ -185,7 +185,7 @@ class Cvs_Woo_Validate_OTP {
 
 		if ( $user ) {
 			/**
-			 * Action Hook: 'verify_woo_before_login_existing_user'
+			 * Action Hook: 'cvs_before_login_existing_user'
 			 *
 			 * Fires right before an existing user is logged in via OTP.
 			 *
@@ -197,7 +197,7 @@ class Cvs_Woo_Validate_OTP {
 			 *
 			 * Usage example:
 			 * ```php
-			 * add_action( 'verify_woo_before_login_existing_user', 'custom_before_login', 10, 1 );
+			 * add_action( 'cvs_before_login_existing_user', 'custom_before_login', 10, 1 );
 			 * function custom_before_login( $user ) {
 			 *     // Custom pre-login actions
 			 * }
@@ -205,7 +205,7 @@ class Cvs_Woo_Validate_OTP {
 			 *
 			 * @since 1.0.0
 			 */
-			do_action( 'verify_woo_before_login_existing_user', $user );
+			do_action( 'cvs_before_login_existing_user', $user );
 
 			wp_set_current_user( $user->ID );
 			wp_set_auth_cookie( $user->ID );
@@ -213,7 +213,7 @@ class Cvs_Woo_Validate_OTP {
 		}
 
 		/**
-		 * Filter: 'verify_woo_auto_register_enabled'
+		 * Filter: 'cvs_auto_register_enabled'
 		 *
 		 * Control whether new users can be auto-registered via OTP.
 		 *
@@ -224,12 +224,12 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @return bool Modified flag to allow or deny auto-registration.
 		 */
-		if ( ! apply_filters( 'verify_woo_auto_register_enabled', true, $phone ) ) {
+		if ( ! apply_filters( 'cvs_auto_register_enabled', true, $phone ) ) {
 			return false;
 		}
 
 		/**
-		 * Filter: 'verify_woo_new_user_role'
+		 * Filter: 'cvs_new_user_role'
 		 *
 		 * Modify the role assigned to newly registered users.
 		 *
@@ -240,7 +240,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @return string The user role.
 		 */
-		$roles = apply_filters( 'verify_woo_new_user_role', 'customer', $phone );
+		$roles = apply_filters( 'cvs_new_user_role', 'customer', $phone );
 
 		$user_data = array(
 			'user_login' => $username,
@@ -249,7 +249,7 @@ class Cvs_Woo_Validate_OTP {
 		);
 
 		/**
-		 * Filter: 'verify_woo_new_user_data'
+		 * Filter: 'cvs_new_user_data'
 		 *
 		 * Change the data array used to register new users.
 		 *
@@ -264,7 +264,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @return array Modified user data array.
 		 */
-		$user_data = apply_filters( 'verify_woo_new_user_data', $user_data, $phone );
+		$user_data = apply_filters( 'cvs_new_user_data', $user_data, $phone );
 
 		$user_id = wp_insert_user( $user_data );
 
@@ -272,10 +272,10 @@ class Cvs_Woo_Validate_OTP {
 			return false;
 		}
 
-		update_user_meta( $user_id, 'verify_woo_phone_number', $phone );
+		update_user_meta( $user_id, 'cvs_phone_number', $phone );
 
 		/**
-		 * Action Hook: 'verify_woo_after_register_user'
+		 * Action Hook: 'cvs_after_register_user'
 		 *
 		 * Fires immediately after a new user is registered via OTP auto-registration.
 		 *
@@ -288,7 +288,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * Usage example:
 		 * ```php
-		 * add_action( 'verify_woo_after_register_user', 'send_welcome_email', 10, 2 );
+		 * add_action( 'cvs_after_register_user', 'send_welcome_email', 10, 2 );
 		 * function send_welcome_email( $user_id, $phone ) {
 		 *     // Send welcome email or other post-registration logic
 		 * }
@@ -296,7 +296,7 @@ class Cvs_Woo_Validate_OTP {
 		 *
 		 * @since 1.0.0
 		 */
-		do_action( 'verify_woo_after_register_user', $user_id, $phone );
+		do_action( 'cvs_after_register_user', $user_id, $phone );
 
 		wp_set_current_user( $user_id );
 		wp_set_auth_cookie( $user_id );

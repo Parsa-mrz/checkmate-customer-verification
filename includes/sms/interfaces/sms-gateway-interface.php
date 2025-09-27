@@ -9,8 +9,8 @@
  *
  * @link       https://parsamirzaie.com
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

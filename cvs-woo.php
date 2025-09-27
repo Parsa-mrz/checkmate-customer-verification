@@ -9,7 +9,7 @@
  *
  * @link              https://parsamirzaie.com
  * @since             1.0.0
- * @package           Verify_Woo
+ * @package           CheckMate
  *
  * @wordpress-plugin
  * Plugin Name:       CheckMate – Customer Verification for WooCommerce
@@ -41,7 +41,7 @@ define( 'CVS_WOO_VERSION', '1.0.0' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-verify-woo-activator.php
  */
-function activate_verify_woo() {
+function activate_cvs() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cvs-woo-activator.php';
 	Cvs_Woo_Activator::activate();
 }
@@ -50,13 +50,13 @@ function activate_verify_woo() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-verify-woo-deactivator.php
  */
-function deactivate_verify_woo() {
+function deactivate_cvs() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-cvs-woo-deactivator.php';
 	Cvs_Woo_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_verify_woo' );
-register_deactivation_hook( __FILE__, 'deactivate_verify_woo' );
+register_activation_hook( __FILE__, 'activate_cvs' );
+register_deactivation_hook( __FILE__, 'deactivate_cvs' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -74,9 +74,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-cvs-woo.php';
  *
  * @since    1.0.0
  */
-function run_verify_woo() {
+function run_cvs() {
 	$plugin_basename = plugin_basename( __FILE__ );
 	$plugin          = new Cvs_Woo( $plugin_basename );
 	$plugin->run();
 }
-run_verify_woo();
+run_cvs();

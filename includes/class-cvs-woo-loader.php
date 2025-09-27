@@ -6,8 +6,8 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  * @author     Parsa Mirzaie <Mirzaie_parsa@protonmail.ch>
  */
 class Cvs_Woo_Loader {

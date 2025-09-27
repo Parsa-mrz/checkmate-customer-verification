@@ -10,8 +10,8 @@
  *
  * @link       https://parsamirzaie.com
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -55,7 +55,7 @@ class Cvs_Woo_Kavenegar_Driver implements Sms_Gateway_Interface {
 	protected string $sender;
 
 	/**
-	 * Constructor for Verify_Woo_Kavenegar_Driver.
+	 * Constructor for cvs_Kavenegar_Driver.
 	 *
 	 * Initializes the SMS gateway driver by retrieving Kavenegar API settings
 	 * (API key, sender, and insecure flag) and then instantiating the
@@ -69,7 +69,7 @@ class Cvs_Woo_Kavenegar_Driver implements Sms_Gateway_Interface {
 	 * - 'kavenegar_insecure' (bool, optional): Whether to use HTTP (true) or HTTPS (false).
 	 * Defaults to `false`.
 	 * If `$settings` is empty, it attempts to fetch settings from WordPress options
-	 * using `Verify_Woo_Admin_Settings_Sms_Gateway_Tab::OPTION_GROUP`.
+	 * using `cvs_Admin_Settings_Sms_Gateway_Tab::OPTION_GROUP`.
 	 * @since 1.0.0
 	 */
 	public function __construct( array $settings = array() ) {

@@ -11,15 +11,15 @@
  *
  * @link       https://parsamirzaie.com
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Class Verify_Woo_Redirect
+ * Class cvs_Redirect
  *
  * Handles redirection of unauthenticated users from WooCommerce checkout
  * to the login page, appending a redirect parameter and custom message key.
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * - `template_redirect`
  *
  * @since 1.0.0
- * @package Verify_Woo
+ * @package cvs
  */
 class Cvs_Woo_Redirect {
 	/**

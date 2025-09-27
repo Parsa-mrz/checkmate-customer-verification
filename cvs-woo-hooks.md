@@ -9,7 +9,7 @@ This document outlines the various action and filter hooks provided by the Verif
 
 Action hooks allow you to execute your custom code at specific points within the plugin's execution flow.
 
-### `verify_woo_send_otp_sms`
+### `cvs_send_otp_sms`
 
 Fires when an OTP (One-Time Password) code has been generated and is ready to be sent via SMS. This hook is crucial for integrating with custom SMS gateways.
 
@@ -20,7 +20,7 @@ Fires when an OTP (One-Time Password) code has been generated and is ready to be
 * **Example Usage:**
 
     ```php
-    add_action( 'verify_woo_send_otp_sms', 'my_custom_sms_sender', 10, 2 );
+    add_action( 'cvs_send_otp_sms', 'my_custom_sms_sender', 10, 2 );
 
     function my_custom_sms_sender( $phone, $otp_code ) {
         // Your custom SMS sending logic here.
@@ -30,7 +30,7 @@ Fires when an OTP (One-Time Password) code has been generated and is ready to be
     }
     ```
 
-### `verify_woo_before_login_existing_user`
+### `cvs_before_login_existing_user`
 
 Fires right before an existing user is logged in via OTP verification.
 
@@ -40,7 +40,7 @@ Fires right before an existing user is logged in via OTP verification.
 * **Example Usage:**
 
     ```php
-    add_action( 'verify_woo_before_login_existing_user', 'my_custom_pre_login_actions', 10, 1 );
+    add_action( 'cvs_before_login_existing_user', 'my_custom_pre_login_actions', 10, 1 );
 
     function my_custom_pre_login_actions( $user ) {
         // Log the login attempt, update user meta, etc.
@@ -48,7 +48,7 @@ Fires right before an existing user is logged in via OTP verification.
     }
     ```
 
-### `verify_woo_after_register_user`
+### `cvs_after_register_user`
 
 Fires immediately after a new user is registered via OTP auto-registration.
 
@@ -59,7 +59,7 @@ Fires immediately after a new user is registered via OTP auto-registration.
 * **Example Usage:**
 
     ```php
-    add_action( 'verify_woo_after_register_user', 'my_custom_post_registration_actions', 10, 2 );
+    add_action( 'cvs_after_register_user', 'my_custom_post_registration_actions', 10, 2 );
 
     function my_custom_post_registration_actions( $user_id, $phone ) {
         // Send a welcome email to the new user
@@ -72,7 +72,7 @@ Fires immediately after a new user is registered via OTP auto-registration.
     }
     ```
 
-### `verify_woo_tab_{$slug}_content`
+### `cvs_tab_{$slug}_content`
 Fires the content rendering action for a specific tab in the Verify Woo plugin admin interface.
 
 * **Description:**
@@ -83,7 +83,7 @@ via a callback hooked to this action.
     * `$slug` (string): The slug of tab.
 ***Example Usage:**
 ```php
-  add_action( 'verify_woo_tab_my-tab-content', function( $slug ) {
+  add_action( 'cvs_tab_my-tab-content', function( $slug ) {
       echo '<p>My custom tab content goes here for slug: ' . esc_html( $slug ) . '</p>';
   }, 10, 1 );
 ```
@@ -93,7 +93,7 @@ via a callback hooked to this action.
 
 Filter hooks allow you to modify data before it is used by the plugin or returned by a function.
 
-### `verify_woo_login_redirect_url`
+### `cvs_login_redirect_url`
 
 Modifies the URL where users are redirected after a successful OTP login.
 
@@ -104,7 +104,7 @@ Modifies the URL where users are redirected after a successful OTP login.
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_login_redirect_url', 'my_custom_login_redirect', 10, 1 );
+    add_filter( 'cvs_login_redirect_url', 'my_custom_login_redirect', 10, 1 );
 
     function my_custom_login_redirect( $redirect_url ) {
         // Redirect to the shop page after login
@@ -112,7 +112,7 @@ Modifies the URL where users are redirected after a successful OTP login.
     }
     ```
 
-### `verify_woo_otp_rate_limit_seconds`
+### `cvs_otp_rate_limit_seconds`
 
 Filters the cooldown time in seconds between OTP requests for the same phone number.
 
@@ -123,7 +123,7 @@ Filters the cooldown time in seconds between OTP requests for the same phone num
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_otp_rate_limit_seconds', 'my_custom_otp_rate_limit', 10, 1 );
+    add_filter( 'cvs_otp_rate_limit_seconds', 'my_custom_otp_rate_limit', 10, 1 );
 
     function my_custom_otp_rate_limit( $seconds ) {
         // Set the rate limit to 60 seconds (1 minute)
@@ -131,7 +131,7 @@ Filters the cooldown time in seconds between OTP requests for the same phone num
     }
     ```
 
-### `verify_woo_otp_expiration`
+### `cvs_otp_expiration`
 
 Changes how long OTP codes are valid (expiration time).
 
@@ -142,7 +142,7 @@ Changes how long OTP codes are valid (expiration time).
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_otp_expiration', 'my_custom_otp_expiration', 10, 1 );
+    add_filter( 'cvs_otp_expiration', 'my_custom_otp_expiration', 10, 1 );
 
     function my_custom_otp_expiration( $expiration ) {
         // Set OTP to expire after 10 minutes
@@ -150,7 +150,7 @@ Changes how long OTP codes are valid (expiration time).
     }
     ```
 
-### `verify_woo_max_otp_attempts`
+### `cvs_max_otp_attempts`
 
 Set the maximum number of attempts allowed for OTP verification.
 
@@ -161,7 +161,7 @@ Set the maximum number of attempts allowed for OTP verification.
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_max_otp_attempts', 'my_custom_max_otp_attempts', 10, 1 );
+    add_filter( 'cvs_max_otp_attempts', 'my_custom_max_otp_attempts', 10, 1 );
 
     function my_custom_max_otp_attempts( $max_attempts ) {
         // Allow up to 5 attempts
@@ -169,7 +169,7 @@ Set the maximum number of attempts allowed for OTP verification.
     }
     ```
 
-### `verify_woo_username_prefix`
+### `cvs_username_prefix`
 
 Allows modifying the prefix used when creating a new username from a phone number during auto-registration.
 
@@ -181,7 +181,7 @@ Allows modifying the prefix used when creating a new username from a phone numbe
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_username_prefix', 'my_custom_username_prefix', 10, 2 );
+    add_filter( 'cvs_username_prefix', 'my_custom_username_prefix', 10, 2 );
 
     function my_custom_username_prefix( $prefix, $clean_phone ) {
         // Use 'user_' as the prefix
@@ -189,7 +189,7 @@ Allows modifying the prefix used when creating a new username from a phone numbe
     }
     ```
 
-### `verify_woo_auto_register_enabled`
+### `cvs_auto_register_enabled`
 
 Control whether new users can be auto-registered via OTP.
 
@@ -201,7 +201,7 @@ Control whether new users can be auto-registered via OTP.
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_auto_register_enabled', 'disable_auto_registration', 10, 2 );
+    add_filter( 'cvs_auto_register_enabled', 'disable_auto_registration', 10, 2 );
 
     function disable_auto_registration( $enabled, $phone ) {
         // Disable auto-registration for all users
@@ -215,7 +215,7 @@ Control whether new users can be auto-registered via OTP.
     }
     ```
 
-### `verify_woo_new_user_role`
+### `cvs_new_user_role`
 
 Modify the role assigned to newly registered users during auto-registration.
 
@@ -227,7 +227,7 @@ Modify the role assigned to newly registered users during auto-registration.
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_new_user_role', 'assign_subscriber_role_to_new_users', 10, 2 );
+    add_filter( 'cvs_new_user_role', 'assign_subscriber_role_to_new_users', 10, 2 );
 
     function assign_subscriber_role_to_new_users( $roles, $phone ) {
         // Assign the 'subscriber' role instead of 'customer'
@@ -235,7 +235,7 @@ Modify the role assigned to newly registered users during auto-registration.
     }
     ```
 
-### `verify_woo_new_user_data`
+### `cvs_new_user_data`
 
 Change the data array used to register new users during auto-registration.
 
@@ -250,7 +250,7 @@ Change the data array used to register new users during auto-registration.
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_new_user_data', 'add_custom_new_user_data', 10, 2 );
+    add_filter( 'cvs_new_user_data', 'add_custom_new_user_data', 10, 2 );
 
     function add_custom_new_user_data( $user_data, $phone ) {
         // Example: Set a default email based on the phone number (not recommended for production)
@@ -264,7 +264,7 @@ Change the data array used to register new users during auto-registration.
     }
     ```
 
-### `verify_woo_login_form_template_path`
+### `cvs_login_form_template_path`
 
 Filters the path to the custom login form template.
 
@@ -275,7 +275,7 @@ Filters the path to the custom login form template.
 * **Example Usage:**
 
     ```php
-    add_filter( 'verify_woo_login_form_template_path', 'my_custom_login_form_template', 10, 1 );
+    add_filter( 'cvs_login_form_template_path', 'my_custom_login_form_template', 10, 1 );
 
     function my_custom_login_form_template( $custom_template_path ) {
         // Use a template from your theme's directory
@@ -287,7 +287,7 @@ Filters the path to the custom login form template.
     ```
 
 
-### `verify_woo_admin_settings_tabs`
+### `cvs_admin_settings_tabs`
 Filters the list of available settings tabs in the VerifyWoo admin page.
 
 * **Description:**
@@ -298,7 +298,7 @@ Filters the list of available settings tabs in the VerifyWoo admin page.
  * `$tabs` (array): An associative array of tab slugs and labels. Example: ['general' => 'General', 'advanced' => 'Advanced']
 * **Example Usage:**
   ```php
-  add_filter( 'verify_woo_admin_settings_tabs', function ( $tabs ) {
+  add_filter( 'cvs_admin_settings_tabs', function ( $tabs ) {
       $tabs['custom-tab'] = __( 'Custom Tab', 'your-textdomain' );
       return $tabs;
   } );

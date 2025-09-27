@@ -13,8 +13,8 @@
  * This class ensures that plugin settings related to SMS functionality are
  * modular, extendable, and compliant with WordPress coding standards.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin/settings
+ * @package    cvs
+ * @subpackage cvs/admin/settings
  * @author     Parsamirzaie
  * @link       https://parsamirzaie.com
  * @since      1.0.0
@@ -41,16 +41,16 @@ class Cvs_Woo_Admin_Settings_Sms_Gateway_Tab {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const OPTION_GROUP = 'verify_woo_sms_gateway_settings';
+	const OPTION_GROUP = 'cvs_sms_gateway_settings';
 
 	/**
 	 * Registers the settings, section, and field for the SMS Gateway tab.
 	 *
 	 * This method uses WordPress's Settings API to define how the settings are
 	 * structured and handled. It registers:
-	 * - A setting group 'verify_woo_settings_sms_gateway_group'.
-	 * - A setting field 'verify_woo_sms_gateway_settings' with a custom sanitize callback.
-	 * - A settings section 'verify_woo_sms_gateway_section' for SMS Gateway configurations.
+	 * - A setting group 'cvs_settings_sms_gateway_group'.
+	 * - A setting field 'cvsteway_settings' with a custom sanitize callback.
+	 * - A settings section 'cvs_sms_gateway_section' for SMS Gateway configurations.
 	 * - A settings field 'activation' within the defined section, which will be rendered by `render_field()`.
 	 *
 	 * @since 1.0.0
@@ -58,26 +58,26 @@ class Cvs_Woo_Admin_Settings_Sms_Gateway_Tab {
 	 */
 	public function register_settings() {
 		register_setting(
-			'verify_woo_settings_sms_gateway_group',
+			'cvs_settings_sms_gateway_group',
 			self::OPTION_GROUP,
 			array( $this, 'sanitize_settings' )
 		);
 
 		add_settings_section(
-			'verify_woo_sms_gateway_section',
+			'cvs_sms_gateway_section',
 			__( 'SMS Gateway Settings', 'checkmate-customer-verification-for-woocommerce' ),
 			function () {
 				echo '<p>' . esc_html__( 'Configure the gateway settings below.', 'checkmate-customer-verification-for-woocommerce' ) . '</p>';
 			},
-			'verify_woo_settings_page_sms_gateway'
+			'cvs_settings_page_sms_gateway'
 		);
 
 		add_settings_field(
 			'sms_gateway',
 			'',
 			array( $this, 'render_field' ),
-			'verify_woo_settings_page_sms_gateway',
-			'verify_woo_sms_gateway_section'
+			'cvs_settings_page_sms_gateway',
+			'cvs_sms_gateway_section'
 		);
 	}
 

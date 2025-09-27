@@ -5,8 +5,8 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/public
+ * @package    cvs
+ * @subpackage cvs/public
  */
 
 /**
@@ -15,8 +15,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/public
+ * @package    cvs
+ * @subpackage cvs/public
  * @author     Parsa Mirzaie <Mirzaie_parsa@protonmail.ch>
  */
 class Cvs_Public {
@@ -63,10 +63,10 @@ class Cvs_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Verify_Woo_Loader as all of the hooks are defined
+		 * defined in cvs_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Verify_Woo_Loader will then create the relationship
+		 * The cvs_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -85,10 +85,10 @@ class Cvs_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Verify_Woo_Loader as all of the hooks are defined
+		 * defined in cvs_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Verify_Woo_Loader will then create the relationship
+		 * The cvs_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -99,8 +99,8 @@ class Cvs_Public {
 			'verifyWooVars',
 			array(
 				'ajax_url'        => admin_url( 'admin-ajax.php' ),
-				'nonce'           => wp_create_nonce( 'verify_woo_otp_nonce' ),
-				'expire_time_otp' => apply_filters( 'verify_woo_otp_expiration', OTP::EXPIRE_TIME->value ),
+				'nonce'           => wp_create_nonce( 'cvs_otp_nonce' ),
+				'expire_time_otp' => apply_filters( 'cvs_otp_expiration', OTP::EXPIRE_TIME->value ),
 			)
 		);
 	}
@@ -126,7 +126,7 @@ class Cvs_Public {
 		 *
 		 * @param string $custom_template_path Full path to the custom login form.
 		 */
-		$custom_template = apply_filters( 'verify_woo_login_form_template_path', CVS_PLUGIN_DIR . '/public/partials/forms/cvs-woo-public-form-1.php' );
+		$custom_template = apply_filters( 'cvs_login_form_template_path', CVS_PLUGIN_DIR . '/public/partials/forms/cvs-woo-public-form-1.php' );
 
 		if ( file_exists( $custom_template ) ) {
 			return $custom_template;

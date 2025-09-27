@@ -8,8 +8,8 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -25,8 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  * @author     Parsa Mirzaie <Mirzaie_parsa@protonmail.ch>
  */
 class Cvs_Woo {
@@ -99,10 +99,10 @@ class Cvs_Woo {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Verify_Woo_Loader. Orchestrates the hooks of the plugin.
-	 * - Verify_Woo_i18n. Defines internationalization functionality.
-	 * - Verify_Woo_Admin. Defines all hooks for the admin area.
-	 * - Verify_Woo_Public. Defines all hooks for the public side of the site.
+	 * - cvs_Loader. Orchestrates the hooks of the plugin.
+	 * - cvs_i18n. Defines internationalization functionality.
+	 * - cvs_Admin. Defines all hooks for the admin area.
+	 * - cvs_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -225,7 +225,7 @@ class Cvs_Woo {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Verify_Woo_i18n class in order to set the domain and to register the hook
+	 * Uses the cvs_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -281,11 +281,11 @@ class Cvs_Woo {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'woocommerce_locate_template', $this, 'myplugin_disable_wc_login_form_template', 100, 3 );
-		$this->loader->add_action( 'wp_ajax_nopriv_verify_woo_send_otp', $plugin_send_otp, 'wp_ajax_send_otp' );
-		$this->loader->add_action( 'wp_ajax_verify_woo_send_otp', $plugin_send_otp, 'wp_ajax_send_otp' );
+		$this->loader->add_action( 'wp_ajax_nopriv_cvs_send_otp', $plugin_send_otp, 'wp_ajax_send_otp' );
+		$this->loader->add_action( 'wp_ajax_cvs_send_otp', $plugin_send_otp, 'wp_ajax_send_otp' );
 
-		$this->loader->add_action( 'wp_ajax_nopriv_verify_woo_check_otp', $plugin_validate_otp, 'wp_ajax_check_otp' );
-		$this->loader->add_action( 'wp_ajax_verify_woo_check_otp', $plugin_validate_otp, 'wp_ajax_check_otp' );
+		$this->loader->add_action( 'wp_ajax_nopriv_cvs_check_otp', $plugin_validate_otp, 'wp_ajax_check_otp' );
+		$this->loader->add_action( 'wp_ajax_cvs_check_otp', $plugin_validate_otp, 'wp_ajax_check_otp' );
 		$this->loader->add_action( 'woocommerce_login_form', $plugin_public, 'register_authentication_form' );
 		$this->loader->add_action( 'template_redirect', $plugin_redirect, 'maybe_redirect_to_login' );
 	}
@@ -355,7 +355,7 @@ class Cvs_Woo {
 			 *
 			 * @param string $custom_template_path Full path to the custom login form.
 			 */
-			$custom_template = apply_filters( 'verify_woo_login_form_template_path', CVS_PLUGIN_DIR . '/public/partials/forms/cvs-woo-public-form-1.php' );
+			$custom_template = apply_filters( 'cvs_login_form_template_path', CVS_PLUGIN_DIR . '/public/partials/forms/cvs-woo-public-form-1.php' );
 
 			$admin_overview_options = get_option( Cvs_Woo_Admin_Settings_Overview_Tab::OPTION_GROUP );
 
@@ -375,7 +375,7 @@ class Cvs_Woo {
 	 * @return array Modified array with "Settings" link prepended.
 	 */
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=verify_woo_settings_page">' . __( 'Settings', 'checkmate-customer-verification-for-woocommerce' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=cvs_settings_page">' . __( 'Settings', 'checkmate-customer-verification-for-woocommerce' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}

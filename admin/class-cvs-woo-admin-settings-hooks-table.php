@@ -5,7 +5,7 @@
  * This file contains the WP_List_Table implementation that renders
  * a developer-facing table of action and filter hooks provided by Verify Woo.
  *
- * @package    Verify_Woo
+ * @package    cvs
  * @subpackage Admin
  * @since      1.0.0
  */
@@ -19,7 +19,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 /**
- * Class Verify_Woo_Admin_Settings_Hooks_Table
+ * Class cvs_Admin_Settings_Hooks_Table
  *
  * Renders a sortable, developer-friendly admin table showing all action and filter
  * hooks available in the Verify Woo plugin.
@@ -138,25 +138,25 @@ class Cvs_Woo_Admin_Settings_Hooks_Table extends WP_List_Table {
 			// 🔧 Action Hooks
 			array(
 				'type'        => 'action',
-				'name'        => 'verify_woo_send_otp_sms',
+				'name'        => 'cvs_send_otp_sms',
 				'description' => 'Fires when an OTP code has been generated and is ready to be sent via SMS.',
 				'parameters'  => '$phone (string), $otp_code (int)',
 			),
 			array(
 				'type'        => 'action',
-				'name'        => 'verify_woo_before_login_existing_user',
+				'name'        => 'cvs_before_login_existing_user',
 				'description' => 'Fires before an existing user is logged in via OTP verification.',
 				'parameters'  => '$user (WP_User)',
 			),
 			array(
 				'type'        => 'action',
-				'name'        => 'verify_woo_after_register_user',
+				'name'        => 'cvs_after_register_user',
 				'description' => 'Fires after a new user is registered via OTP.',
 				'parameters'  => '$user_id (int), $phone (string)',
 			),
 			array(
 				'type'        => 'action',
-				'name'        => 'verify_woo_tab_{$slug}_content',
+				'name'        => 'cvs_tab_{$slug}_content',
 				'description' => 'Renders content for custom Verify Woo admin tabs.',
 				'parameters'  => '$slug (string)',
 			),
@@ -164,61 +164,61 @@ class Cvs_Woo_Admin_Settings_Hooks_Table extends WP_List_Table {
 			// 🧪 Filter Hooks
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_login_redirect_url',
+				'name'        => 'cvs_login_redirect_url',
 				'description' => 'Modifies login redirect URL after successful OTP.',
 				'parameters'  => '$redirect_url (string)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_otp_rate_limit_seconds',
+				'name'        => 'cvs_otp_rate_limit_seconds',
 				'description' => 'Filters the cooldown time between OTP requests.',
 				'parameters'  => '$seconds (int)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_otp_expiration',
+				'name'        => 'cvs_otp_expiration',
 				'description' => 'Changes OTP expiration time in seconds.',
 				'parameters'  => '$expiration (int)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_max_otp_attempts',
+				'name'        => 'cvs_max_otp_attempts',
 				'description' => 'Sets the max attempts for OTP verification.',
 				'parameters'  => '$max_attempts (int)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_username_prefix',
+				'name'        => 'cvs_username_prefix',
 				'description' => 'Modifies the auto-registration username prefix.',
 				'parameters'  => '$prefix (string), $clean_phone (string)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_auto_register_enabled',
+				'name'        => 'cvs_auto_register_enabled',
 				'description' => 'Controls whether auto-registration is allowed.',
 				'parameters'  => '$enabled (bool), $phone (string)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_new_user_role',
+				'name'        => 'cvs_new_user_role',
 				'description' => 'Modifies the role for new users registered via OTP.',
 				'parameters'  => '$role (string|array), $phone (string)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_new_user_data',
+				'name'        => 'cvs_new_user_data',
 				'description' => 'Allows customization of user data during auto-registration.',
 				'parameters'  => '$user_data (array), $phone (string)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_login_form_template_path',
+				'name'        => 'cvs_login_form_template_path',
 				'description' => 'Filters the path to the custom login form template.',
 				'parameters'  => '$custom_template_path (string)',
 			),
 			array(
 				'type'        => 'filter',
-				'name'        => 'verify_woo_admin_settings_tabs',
+				'name'        => 'cvs_admin_settings_tabs',
 				'description' => 'Filters the available admin tabs in Verify Woo settings.',
 				'parameters'  => '$tabs (array)',
 			),

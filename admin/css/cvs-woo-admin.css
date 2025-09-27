@@ -140,8 +140,8 @@
   flex-grow: 1;
 }
 
-.toplevel_page_verify_woo_settings_page .notice,
-.toplevel_page_verify_woo_settings_page .notice.notice-success {
+.toplevel_page_cvs_settings_page .notice,
+.toplevel_page_cvs_settings_page .notice.notice-success {
   display: none !important;
 }
 

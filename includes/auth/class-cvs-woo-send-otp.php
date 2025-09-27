@@ -9,15 +9,15 @@
  *
  * @link       https://parsamirzaie.com
  * @since      1.0.0
- * @package    Verify_Woo
- * @subpackage Verify_Woo/includes
+ * @package    cvs
+ * @subpackage cvs/includes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Class Verify_Woo_Send_OTP
+ * Class cvs_Send_OTP
  *
  * Responsible for:
  * - Receiving AJAX requests to send OTP
@@ -28,12 +28,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * - Triggering hook to integrate with external SMS APIs
  *
  * Hooks:
- * - `verify_woo_otp_rate_limit_seconds` — Cooldown between OTPs
- * - `verify_woo_otp_expiration` — OTP lifespan
- * - `verify_woo_send_otp_sms` — Send OTP externally (via SMS, for example)
+ * - `cvs_otp_rate_limit_seconds` — Cooldown between OTPs
+ * - `cvs_otp_expiration` — OTP lifespan
+ * - `cvs_send_otp_sms` — Send OTP externally (via SMS, for example)
  *
  * @since 1.0.0
- * @package Verify_Woo
+ * @package cvs
  */
 class Cvs_Woo_Send_OTP {
 
@@ -50,33 +50,33 @@ class Cvs_Woo_Send_OTP {
 	 * @return void Outputs JSON and terminates script execution.
 	 */
 	public function wp_ajax_send_otp() {
-		check_ajax_referer( 'verify_woo_otp_nonce', '_nonce', true );
+		check_ajax_referer( 'cvs_otp_nonce', '_nonce', true );
 
 		$admin_sms_gateway_options = get_option( Cvs_Woo_Admin_Settings_Sms_Gateway_Tab::OPTION_GROUP );
 		if ( ! $admin_sms_gateway_options['sms_activation'] ) {
-			wp_send_json_error( __( 'Login to the system is currently unavailable.', 'customer-verification-system-for-woocommerce' ) );
+			wp_send_json_error( __( 'Login to the system is currently unavailable.', 'checkmate-customer-verification-for-woocommerce' ) );
 		}
 
 		if ( ! isset( $_POST['user_phone'] ) ) {
-			wp_send_json_error( __( 'Phone number is required.', 'customer-verification-system-for-woocommerce' ) );
+			wp_send_json_error( __( 'Phone number is required.', 'checkmate-customer-verification-for-woocommerce' ) );
 		}
 
 		$user_phone = sanitize_text_field( wp_unslash( $_POST['user_phone'] ) );
 
 		if ( empty( $user_phone ) ) {
-			wp_send_json_error( __( 'Phone number is empty.', 'customer-verification-system-for-woocommerce' ) );
+			wp_send_json_error( __( 'Phone number is empty.', 'checkmate-customer-verification-for-woocommerce' ) );
 		}
 
-		$rate = $this->verify_woo_can_request_otp( $user_phone );
+		$rate = $this->cvs_can_request_otp( $user_phone );
 		if ( ! $rate['allowed'] ) {
 			// Translators: %d is the number of seconds the user must wait before retrying.
-			wp_send_json_error( sprintf( __( 'Please wait %d seconds before trying again.', 'customer-verification-system-for-woocommerce' ), $rate['wait'] ) );
+			wp_send_json_error( sprintf( __( 'Please wait %d seconds before trying again.', 'checkmate-customer-verification-for-woocommerce' ), $rate['wait'] ) );
 		}
 
-		$this->verify_woo_generate_otp( $user_phone );
+		$this->cvs_generate_otp( $user_phone );
 
 		// Translators: %d is the user phone number.
-		wp_send_json_success( sprintf( __( 'OTP Sent to %d Successfully!', 'customer-verification-system-for-woocommerce' ), $user_phone ) );
+		wp_send_json_success( sprintf( __( 'OTP Sent to %d Successfully!', 'checkmate-customer-verification-for-woocommerce' ), $user_phone ) );
 	}
 
 	/**
@@ -92,15 +92,15 @@ class Cvs_Woo_Send_OTP {
 	 *     wait?: int      Seconds remaining before next allowed request.
 	 * }
 	 */
-	private function verify_woo_can_request_otp( $phone ) {
-		$key  = 'verify_woo_otp_' . md5( $phone );
+	private function cvs_can_request_otp( $phone ) {
+		$key  = 'cvs_otp_' . md5( $phone );
 		$data = get_transient( $key );
 
 		if ( $data && isset( $data['time'] ) ) {
 			$elapsed = time() - $data['time'];
 
 			/**
-			 * Filter Hook: 'verify_woo_otp_rate_limit_seconds'
+			 * Filter Hook: 'cvs_otp_rate_limit_seconds'
 			 *
 			 * Filters the cooldown time in seconds between OTP requests.
 			 *
@@ -115,14 +115,14 @@ class Cvs_Woo_Send_OTP {
 			 *
 			 * Usage example:
 			 * ```php
-			 * add_filter( 'verify_woo_otp_rate_limit_seconds', function( $seconds ) {
+			 * add_filter( 'cvs_otp_rate_limit_seconds', function( $seconds ) {
 			 *     return 60; // 1 minute instead of 2
 			 * });
 			 * ```
 			 *
 			 * @since 1.0.0
 			 */
-			$rate_limit = apply_filters( 'verify_woo_otp_rate_limit_seconds', OTP::EXPIRE_TIME->value );
+			$rate_limit = apply_filters( 'cvs_otp_rate_limit_seconds', OTP::EXPIRE_TIME->value );
 
 			if ( $elapsed < $rate_limit ) {
 				return array(
@@ -146,9 +146,9 @@ class Cvs_Woo_Send_OTP {
 	 * @param string $phone Phone number to send OTP to.
 	 * @return int Generated OTP code.
 	 */
-	private function verify_woo_generate_otp( $phone ) {
+	private function cvs_generate_otp( $phone ) {
 		$otp_code = wp_rand( 1000, 9999 );
-		$key      = 'verify_woo_otp_' . md5( $phone );
+		$key      = 'cvs_otp_' . md5( $phone );
 
 		$data = array(
 			'otp'      => $otp_code,
@@ -157,7 +157,7 @@ class Cvs_Woo_Send_OTP {
 		);
 
 		/**
-		 * Filter: 'verify_woo_otp_expiration'
+		 * Filter: 'cvs_otp_expiration'
 		 *
 		 * Change how long OTP codes are valid (expiration time).
 		 *
@@ -167,12 +167,12 @@ class Cvs_Woo_Send_OTP {
 		 *
 		 * @return int New OTP expiration time in seconds.
 		 */
-		$expiration = apply_filters( 'verify_woo_otp_expiration', OTP::EXPIRE_TIME->value );
+		$expiration = apply_filters( 'cvs_otp_expiration', OTP::EXPIRE_TIME->value );
 
 		set_transient( $key, $data, $expiration );
 
 		/**
-		 * Action Hook: 'verify_woo_send_otp_sms'
+		 * Action Hook: 'cvs_send_otp_sms'
 		 *
 		 * Fires when an OTP code has been generated and is ready to be sent via SMS.
 		 *
@@ -185,7 +185,7 @@ class Cvs_Woo_Send_OTP {
 		 *
 		 * Usage example:
 		 * ```php
-		 * add_action( 'verify_woo_send_otp_sms', 'send_sms_via_gateway', 10, 2 );
+		 * add_action( 'cvs_send_otp_sms', 'send_sms_via_gateway', 10, 2 );
 		 * function send_sms_via_gateway( $phone, $otp_code ) {
 		 *     // Your SMS sending logic here
 		 * }
@@ -193,7 +193,7 @@ class Cvs_Woo_Send_OTP {
 		 *
 		 * @since 1.0.0
 		 */
-		do_action( 'verify_woo_send_otp_sms', $phone, $otp_code );
+		do_action( 'cvs_send_otp_sms', $phone, $otp_code );
 
 		error_log( 'OTP for ' . $phone . ': ' . $otp_code );
 		$this->send_otp( $phone, $otp_code );

@@ -7,8 +7,8 @@
  *
  * Enums improve type safety and centralize config for easier maintenance.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/Enums
+ * @package    cvs
+ * @subpackage cvs/Enums
  * @author     Parsa Mirzaie <Mirzaie_parsa@protonmail.ch>
  * @since      1.0.0
  */

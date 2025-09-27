@@ -7,8 +7,8 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin/partials
+ * @package    cvs
+ * @subpackage cvs/admin/partials
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -67,7 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php Cvs_Woo_Admin_Notice::render_notices(); ?>
 						</div>
 						<?php
-						do_action( "verify_woo_tab_{$slug}_content", $slug );
+						do_action( "cvs_tab_{$slug}_content", $slug );
 
 						if ( ! empty( $tab_item['content_file'] ) ) {
 							include $tab_item['content_file'];

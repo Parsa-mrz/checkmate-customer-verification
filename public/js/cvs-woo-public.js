@@ -103,7 +103,7 @@
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					action: 'verify_woo_send_otp',
+					action: 'cvs_send_otp',
 					user_phone: user_phone,
 					_nonce: verifyWooVars.nonce,
 				},
@@ -161,7 +161,7 @@
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					action: 'verify_woo_check_otp',
+					action: 'cvs_check_otp',
 					user_phone: user_phone,
 					otp: otp,
 					_nonce: verifyWooVars.nonce

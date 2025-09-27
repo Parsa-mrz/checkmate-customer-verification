@@ -2,12 +2,12 @@
 /**
  * Admin Settings Information Tab Class.
  *
- * This file defines the `Verify_Woo_Admin_Settings_Information_Tab` class, which is responsible
+ * This file defines the `cvs_Admin_Settings_Information_Tab` class, which is responsible
  * for handling the "Information" tab on the Verify Woo plugin's administration settings page.
  * It manages the display of plugin version and other relevant details.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin
+ * @package    cvs
+ * @subpackage cvs/admin
  * @author     Parsamirzaie
  * @link       https://parsamirzaie.com
  * @since      1.0.0
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * The Verify_Woo_Admin_Settings_Information_Tab class.
+ * The cvs_Admin_Settings_Information_Tab class.
  *
  * This class is responsible for managing the information tab within the Verify Woo plugin's
  * admin settings page. It handles the registration of settings, sanitization of options,
@@ -63,7 +63,7 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const OPTION_GROUP = 'verify_woo_information_settings';
+	const OPTION_GROUP = 'cvs_information_settings';
 
 	/**
 	 * Registers the settings for the information tab.
@@ -76,24 +76,24 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 	 */
 	public function register_settings() {
 		register_setting(
-			'verify_woo_settings_information_group',
+			'cvs_settings_information_group',
 			self::OPTION_GROUP,
 			array( $this, 'sanitize_settings' )
 		);
 
 		add_settings_section(
-			'verify_woo_information_section',
+			'cvs_information_section',
 			__( 'Plugin Information', 'checkmate-customer-verification-for-woocommerce' ),
 			'',
-			'verify_woo_settings_page_information'
+			'cvs_settings_page_information'
 		);
 
 		add_settings_field(
 			'information',
 			'',
 			array( $this, 'render_field' ),
-			'verify_woo_settings_page_information',
-			'verify_woo_information_section'
+			'cvs_settings_page_information',
+			'cvs_information_section'
 		);
 	}
 
@@ -121,7 +121,7 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 	 * Renders the information field on the settings page.
 	 *
 	 * This method retrieves the saved options and uses a factory class
-	 * (Verify_Woo_Admin_Settings_Field_Factory) to display the plugin's version.
+	 * (cvs_Admin_Settings_Field_Factory) to display the plugin's version.
 	 *
 	 * @since 1.0.0
 	 * @return void

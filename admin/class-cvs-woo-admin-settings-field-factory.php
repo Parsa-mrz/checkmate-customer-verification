@@ -5,8 +5,8 @@
  * This file defines a reusable factory class responsible for rendering
  * common form field types within the Verify-Woo admin settings interface.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin
+ * @package    cvs
+ * @subpackage cvs/admin
  * @author     Parsamirzaie
  * @link       https://parsamirzaie.com
  * @since      1.0.0
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Class Verify_Woo_Admin_Settings_Field_Factory
+ * Class cvs_Admin_Settings_Field_Factory
  *
  * A utility class that provides reusable methods for rendering
  * admin setting fields in a consistent and maintainable way.
@@ -64,7 +64,7 @@ class Cvs_Woo_Admin_Settings_Field_Factory {
 			function () use ( $options, $option_key, $option_group, $title, $description ) {
 				$value      = $options[ $option_key ] ?? false;
 				$input_name = esc_attr( $option_group ) . '[' . esc_attr( $option_key ) . ']';
-				$id         = 'verify_woo_toggle_' . esc_attr( sanitize_key( $option_key ) );
+				$id         = 'cvs_toggle_' . esc_attr( sanitize_key( $option_key ) );
 				?>
 			<div class="header">
 				<label class="toggle-switch" for="<?php echo esc_attr( $id ); ?>">
@@ -108,7 +108,7 @@ class Cvs_Woo_Admin_Settings_Field_Factory {
 			function () use ( $options, $option_key, $option_group, $title, $description, $choices ) {
 				$value      = $options[ $option_key ] ?? '';
 				$input_name = esc_attr( $option_group ) . '[' . esc_attr( $option_key ) . ']';
-				$id         = 'verify_woo_dropdown_' . esc_attr( sanitize_key( $option_key ) );
+				$id         = 'cvs_dropdown_' . esc_attr( sanitize_key( $option_key ) );
 				?>
 			<div class="header">
 				<div class="verify-woo-dropdown" data-dropdown-id="<?php echo esc_attr( $id ); ?>">
@@ -166,7 +166,7 @@ class Cvs_Woo_Admin_Settings_Field_Factory {
 			function () use ( $options, $option_key, $option_group, $title, $description, $type, $placeholder, $size ) {
 				$value      = $options[ $option_key ] ?? '';
 				$input_name = esc_attr( $option_group ) . '[' . esc_attr( $option_key ) . ']';
-				$id         = 'verify_woo_input_' . esc_attr( sanitize_key( $option_key ) );
+				$id         = 'cvs_input_' . esc_attr( sanitize_key( $option_key ) );
 				?>
 			<div class="header">
 				<input

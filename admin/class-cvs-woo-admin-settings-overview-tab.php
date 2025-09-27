@@ -5,8 +5,8 @@
  * This file contains the class responsible for rendering and handling
  * the "Overview" tab settings in the Verify-Woo plugin admin page.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin
+ * @package    cvs
+ * @subpackage cvs/admin
  * @author      Parsamirzaie
  * @link        https://parsamirzaie.com
  * @since       1.0.0
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 /**
- * Class verify_Woo_Admin_Settings_overview
+ * Class cvs_Admin_Settings_overview
  *
  * Handles registration, sanitization, and rendering of the "Overview" tab settings
  * for the Verify-Woo plugin.
@@ -36,14 +36,14 @@ class Cvs_Woo_Admin_Settings_Overview_Tab {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const OPTION_GROUP = 'verify_woo_overview_settings';
+	const OPTION_GROUP = 'cvs_overview_settings';
 
 	/**
 	 * Register settings, sections, and fields using WordPress Settings API.
 	 *
 	 * Hooks into WordPress admin to:
-	 * - Register the setting group `verify_woo_settings_group`.
-	 * - Create a settings section called `verify_woo_main_section`.
+	 * - Register the setting group `cvs_settings_group`.
+	 * - Create a settings section called `cvs_main_section`.
 	 * - Add a checkbox field for "Activate Login Page" under the section.
 	 *
 	 * @since 1.0.0
@@ -51,26 +51,26 @@ class Cvs_Woo_Admin_Settings_Overview_Tab {
 	 */
 	public function register_settings() {
 		register_setting(
-			'verify_woo_settings_overview_group',
+			'cvs_settings_overview_group',
 			self::OPTION_GROUP,
 			array( $this, 'sanitize_settings' )
 		);
 
 		add_settings_section(
-			'verify_woo_main_section',
+			'cvs_main_section',
 			__( 'Main Settings', 'checkmate-customer-verification-for-woocommerce' ),
 			function () {
 				echo '<p>' . esc_html__( 'Configure the login settings below.', 'checkmate-customer-verification-for-woocommerce' ) . '</p>';
 			},
-			'verify_woo_settings_page_overview'
+			'cvs_settings_page_overview'
 		);
 
 		add_settings_field(
 			'overview',
 			'',
 			array( $this, 'render_field' ),
-			'verify_woo_settings_page_overview',
-			'verify_woo_main_section'
+			'cvs_settings_page_overview',
+			'cvs_main_section'
 		);
 	}
 
@@ -100,7 +100,7 @@ class Cvs_Woo_Admin_Settings_Overview_Tab {
 	 * Render the "Activate Login Page" field in the admin UI.
 	 *
 	 * Outputs a modern toggle switch checkbox. Uses saved value from
-	 * the `verify_woo_settings` option.
+	 * the `cvs_settings` option.
 	 *
 	 * @since 1.0.0
 	 * @return void

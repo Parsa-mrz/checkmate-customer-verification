@@ -22,7 +22,7 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
+ * @package    cvs
  */
 
 // If uninstall not called from WordPress, then exit.

@@ -5,8 +5,8 @@
  * @link       https://parsamirzaie.com
  * @since      1.0.0
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin
+ * @package    cvs
+ * @subpackage cvs/admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Verify_Woo
- * @subpackage Verify_Woo/admin
+ * @package    cvs
+ * @subpackage cvs/admin
  * @author     Parsa Mirzaie <Mirzaie_parsa@protonmail.ch>
  */
 class Cvs_Woo_Admin {
@@ -66,10 +66,10 @@ class Cvs_Woo_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Verify_Woo_Loader as all of the hooks are defined
+		 * defined in cvs as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Verify_Woo_Loader will then create the relationship
+		 * The cvs_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -88,10 +88,10 @@ class Cvs_Woo_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Verify_Woo_Loader as all of the hooks are defined
+		 * defined in cvs_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Verify_Woo_Loader will then create the relationship
+		 * The cvs_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -113,7 +113,7 @@ class Cvs_Woo_Admin {
 			'CheckMate Settings',
 			__( 'CheckMate', 'checkmate-customer-verification-for-woocommerce' ),
 			'manage_options',
-			'verify_woo_settings_page',
+			'cvs_settings_page',
 			array( $this, 'render_settings' ),
 			'dashicons-shield',
 			47
@@ -182,7 +182,7 @@ class Cvs_Woo_Admin {
 			);
 		}
 
-		return apply_filters( 'verify_woo_admin_settings_tabs', $tabs );
+		return apply_filters( 'cvs_admin_settings_tabs', $tabs );
 	}
 
 	/**
