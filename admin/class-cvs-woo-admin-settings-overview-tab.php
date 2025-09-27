@@ -58,9 +58,9 @@ class Cvs_Woo_Admin_Settings_Overview_Tab {
 
 		add_settings_section(
 			'verify_woo_main_section',
-			__( 'Main Settings', 'customer-verification-system-for-woocommerce' ),
+			__( 'Main Settings', 'checkmate-customer-verification-for-woocommerce' ),
 			function () {
-				echo '<p>' . esc_html__( 'Configure the login settings below.', 'customer-verification-system-for-woocommerce' ) . '</p>';
+				echo '<p>' . esc_html__( 'Configure the login settings below.', 'checkmate-customer-verification-for-woocommerce' ) . '</p>';
 			},
 			'verify_woo_settings_page_overview'
 		);
@@ -91,7 +91,7 @@ class Cvs_Woo_Admin_Settings_Overview_Tab {
 		$sanitized['activation']        = ! empty( $input['activation'] ) ? true : false;
 		$sanitized['checkout_redirect'] = ! empty( $input['checkout_redirect'] ) ? true : false;
 
-		Cvs_Woo_Admin_Notice::add_success( __( 'Settings Saved', 'customer-verification-system-for-woocommerce' ) );
+		Cvs_Woo_Admin_Notice::add_success( __( 'Settings Saved', 'checkmate-customer-verification-for-woocommerce' ) );
 
 		return $sanitized;
 	}
@@ -111,16 +111,16 @@ class Cvs_Woo_Admin_Settings_Overview_Tab {
 			$options,
 			'activation',
 			self::OPTION_GROUP,
-			__( 'Enable Custom Login Page', 'customer-verification-system-for-woocommerce' ),
-			__( 'Use a custom login page for WooCommerce, redirecting users from the default login', 'customer-verification-system-for-woocommerce' )
+			__( 'Enable Custom Login Page', 'checkmate-customer-verification-for-woocommerce' ),
+			__( 'Use a custom login page for WooCommerce, redirecting users from the default login', 'checkmate-customer-verification-for-woocommerce' )
 		);
 
 		Cvs_Woo_Admin_Settings_Field_Factory::toggle(
 			$options,
 			'checkout_redirect',
 			self::OPTION_GROUP,
-			__( 'Enable Checkout Login Redirect', 'customer-verification-system-for-woocommerce' ),
-			__( 'Redirect customers to the login page during checkout and back to checkout after successful login', 'customer-verification-system-for-woocommerce' )
+			__( 'Enable Checkout Login Redirect', 'checkmate-customer-verification-for-woocommerce' ),
+			__( 'Redirect customers to the login page during checkout and back to checkout after successful login', 'checkmate-customer-verification-for-woocommerce' )
 		);
 	}
 }

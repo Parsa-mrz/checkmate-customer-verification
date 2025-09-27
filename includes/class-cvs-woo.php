@@ -86,7 +86,7 @@ class Cvs_Woo {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_basename = $plugin_basename;
-		$this->plugin_name     = 'customer-verification-system-for-woocommerce';
+		$this->plugin_name     = 'checkmate-customer-verification-for-woocommerce';
 		$this->define_constants();
 		$this->load_dependencies();
 		$this->set_locale();
@@ -375,7 +375,7 @@ class Cvs_Woo {
 	 * @return array Modified array with "Settings" link prepended.
 	 */
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=verify_woo_settings_page">' . __( 'Settings', 'customer-verification-system-for-woocommerce' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=verify_woo_settings_page">' . __( 'Settings', 'checkmate-customer-verification-for-woocommerce' ) . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
 	}

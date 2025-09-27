@@ -55,9 +55,9 @@ class Cvs_Woo_Admin_Settings_Hooks_Tab {
 
 		add_settings_section(
 			'verify_woo_hooks_section',
-			__( 'Hook', 'customer-verification-system-for-woocommerce' ),
+			__( 'Hook', 'checkmate-customer-verification-for-woocommerce' ),
 			function () {
-				echo '<p>' . esc_html__( 'Configure the login settings below.', 'customer-verification-system-for-woocommerce' ) . '</p>';
+				echo '<p>' . esc_html__( 'Configure the login settings below.', 'checkmate-customer-verification-for-woocommerce' ) . '</p>';
 			},
 			'verify_woo_settings_page_hooks'
 		);
@@ -88,7 +88,7 @@ class Cvs_Woo_Admin_Settings_Hooks_Tab {
 		$sanitized               = array();
 		$sanitized['activation'] = ! empty( $input['activation'] ) ? true : false;
 
-		Cvs_Woo_Admin_Notice::add_success( __( 'Settings Saved', 'customer-verification-system-for-woocommerce' ) );
+		Cvs_Woo_Admin_Notice::add_success( __( 'Settings Saved', 'checkmate-customer-verification-for-woocommerce' ) );
 
 		return $sanitized;
 	}

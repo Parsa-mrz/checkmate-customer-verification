@@ -111,7 +111,7 @@ class Cvs_Woo_Admin {
 	public function add_admin_menu() {
 		add_menu_page(
 			'CheckMate Settings',
-			__( 'CheckMate', 'customer-verification-system-for-woocommerce' ),
+			__( 'CheckMate', 'checkmate-customer-verification-for-woocommerce' ),
 			'manage_options',
 			'verify_woo_settings_page',
 			array( $this, 'render_settings' ),

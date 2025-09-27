@@ -81,14 +81,14 @@ class Cvs_Woo_Kavenegar_Http_Client {
 	 */
 	public function __construct( string $api_key, bool $insecure = false ) {
 		if ( empty( $api_key ) ) {
-			wp_die( esc_html__( 'Kavenegar API Key is empty.', 'customer-verification-system-for-woocommerce' ) );
+			wp_die( esc_html__( 'Kavenegar API Key is empty.', 'checkmate-customer-verification-for-woocommerce' ) );
 		}
 
 		$this->api_key  = trim( $api_key );
 		$this->insecure = (bool) $insecure;
 
 		if ( ! function_exists( 'wp_remote_post' ) ) {
-			wp_die( esc_html__( 'WordPress HTTP API functions are not available. Make sure wp-includes/pluggable.php is loaded.', 'customer-verification-system-for-woocommerce' ) );
+			wp_die( esc_html__( 'WordPress HTTP API functions are not available. Make sure wp-includes/pluggable.php is loaded.', 'checkmate-customer-verification-for-woocommerce' ) );
 		}
 	}
 
@@ -156,7 +156,7 @@ class Cvs_Woo_Kavenegar_Http_Client {
 		if ( 200 !== $http_code || is_null( $json_response ) || ! isset( $json_response->return ) ) {
 			$error_message = sprintf(
 				// Translators: %s is API error.
-				esc_html__( 'Kavenegar API: HTTP Status %1$d or invalid JSON response. Response: %2$s', 'customer-verification-system-for-woocommerce' ),
+				esc_html__( 'Kavenegar API: HTTP Status %1$d or invalid JSON response. Response: %2$s', 'checkmate-customer-verification-for-woocommerce' ),
 				$http_code,
 				$body
 			);
@@ -165,12 +165,12 @@ class Cvs_Woo_Kavenegar_Http_Client {
 		}
 
 		if ( 200 !== (int) $json_response->return->status ) {
-			$api_message = $json_response->return->message ?? esc_html__( 'Unknown Kavenegar API error.', 'customer-verification-system-for-woocommerce' );
+			$api_message = $json_response->return->message ?? esc_html__( 'Unknown Kavenegar API error.', 'checkmate-customer-verification-for-woocommerce' );
 			$api_status  = $json_response->return->status ?? 0;
 			error_log(
 				sprintf(
 					// Translators: %s is API error.
-					esc_html__( 'Kavenegar API Error: %1$s (Status: %2$d)', 'customer-verification-system-for-woocommerce' ),
+					esc_html__( 'Kavenegar API Error: %1$s (Status: %2$d)', 'checkmate-customer-verification-for-woocommerce' ),
 					$api_message,
 					$api_status
 				)

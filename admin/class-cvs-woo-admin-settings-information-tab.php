@@ -83,7 +83,7 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 
 		add_settings_section(
 			'verify_woo_information_section',
-			__( 'Plugin Information', 'customer-verification-system-for-woocommerce' ),
+			__( 'Plugin Information', 'checkmate-customer-verification-for-woocommerce' ),
 			'',
 			'verify_woo_settings_page_information'
 		);
@@ -112,7 +112,7 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 		$sanitized               = array();
 		$sanitized['activation'] = ! empty( $input['activation'] ) ? true : false;
 
-		Cvs_Woo_Admin_Notice::add_success( __( 'Settings Saved', 'customer-verification-system-for-woocommerce' ) );
+		Cvs_Woo_Admin_Notice::add_success( __( 'Settings Saved', 'checkmate-customer-verification-for-woocommerce' ) );
 
 		return $sanitized;
 	}
@@ -130,37 +130,37 @@ class Cvs_Woo_Admin_Settings_Information_Tab {
 		$options = get_option( self::OPTION_GROUP );
 
 		Cvs_Woo_Admin_Settings_Field_Factory::text(
-			__( 'CheckMate', 'customer-verification-system-for-woocommerce' ),
+			__( 'CheckMate', 'checkmate-customer-verification-for-woocommerce' ),
 			sprintf(
 			/* translators: %s: plugin version */
-				esc_html__( 'Version %s', 'customer-verification-system-for-woocommerce' ),
+				esc_html__( 'Version %s', 'checkmate-customer-verification-for-woocommerce' ),
 				esc_html( $this->version )
 			),
-			__( 'This is the current installed version of the plugin.', 'customer-verification-system-for-woocommerce' ),
+			__( 'This is the current installed version of the plugin.', 'checkmate-customer-verification-for-woocommerce' ),
 			array(
 				'subtitle' => 'verify-woo-notice-success verify-woo-admin-version',
 			)
 		);
 
 		Cvs_Woo_Admin_Settings_Field_Factory::text(
-			__( 'Developer Information', 'customer-verification-system-for-woocommerce' ),
+			__( 'Developer Information', 'checkmate-customer-verification-for-woocommerce' ),
 			'',
 			Cvs_Woo_Admin_Settings_Field_Factory::list(
 				'ul',
 				array(
 					array(
 						'url'   => 'https://parsamirzaie.com',
-						'label' => __( 'Check My Website', 'customer-verification-system-for-woocommerce' ),
+						'label' => __( 'Check My Website', 'checkmate-customer-verification-for-woocommerce' ),
 						'icon'  => 'dashicons-admin-site',
 					),
 					array(
 						'url'   => 'https://github.com/Parsa-mrz',
-						'label' => __( 'GitHub Profile', 'customer-verification-system-for-woocommerce' ),
+						'label' => __( 'GitHub Profile', 'checkmate-customer-verification-for-woocommerce' ),
 						'icon'  => 'dashicons-admin-links',
 					),
 					array(
 						'url'   => 'www.linkedin.com/in/parsa-mirzaie-85249a221',
-						'label' => __( 'LinkedIn Profile', 'customer-verification-system-for-woocommerce' ),
+						'label' => __( 'LinkedIn Profile', 'checkmate-customer-verification-for-woocommerce' ),
 						'icon'  => 'dashicons-format-aside',
 					),
 				)

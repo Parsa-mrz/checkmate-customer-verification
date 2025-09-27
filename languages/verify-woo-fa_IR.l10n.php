@@ -13,6 +13,6 @@ return array(
 	'content-transfer-encoding' => '8bit',
 	'x-generator'               => 'Loco https://localise.biz/',
 	'x-loco-version'            => '2.8.0; wp-6.8.2; php-8.2.29',
-	'x-domain'                  => 'customer-verification-system-for-woocommerce',
+	'x-domain'                  => 'checkmate-customer-verification-for-woocommerce',
 	'messages'                  => array(),
 );
