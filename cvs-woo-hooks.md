@@ -1,5 +1,5 @@
 
-# Verify-Woo Hooks Documentation
+# CheckMate Hooks Documentation
 
 This document outlines the various action and filter hooks provided by the Verify-Woo plugin, allowing developers to extend and customize its functionality.
 
